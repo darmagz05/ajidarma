@@ -1,0 +1,540 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="YooImprove adalah ruang belajar saham Indonesia: mulai dari e-book dasar, istilah saham, analisis teknikal, fundamental, hingga program VIP." />
+  <meta name="theme-color" content="#0a0a0a" />
+  <title>YooImprove — Belajar Saham dengan Arah</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      --background:#ffffff;--foreground:#111111;--ink:#0a0a0a;
+      --muted:#8d8d8d;--subtle:#b6b6b6;--line:#e6e5e2;
+      --surface:#f1f0ee;--surface-2:#e3e2df;
+      --accent:#b15f2c;--accent-from:#cf8047;--accent-to:#97501f;
+      --hero-from:#ecebe9;--hero-to:#c9c9c9;
+      --radius-pill:9999px;--radius-card:2rem;--radius-card-sm:1.25rem;
+      --radius-control:.875rem;--text-watermark:13rem;--container-shell:88rem;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{font-size:16px;-webkit-font-smoothing:antialiased;scroll-behavior:auto}
+    body{font-family:'Onest',sans-serif;background:var(--background);color:var(--foreground);overflow-x:hidden}
+    a{color:inherit;text-decoration:none}button,input,textarea,select{font:inherit}button{color:inherit;background:none;border:0;cursor:pointer}
+    ul{list-style:none}img{display:block}svg{display:block;width:1em;height:1em;flex-shrink:0}
+    :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    .shell{max-width:var(--container-shell);margin-inline:auto}
+    .skip-link{position:fixed;left:1rem;top:-4rem;z-index:200;border-radius:.875rem;padding:.6rem 1rem;background:#0a0a0a;color:white;font-size:.875rem}
+    .skip-link:focus{top:1rem}
+    .ico{display:inline-block;width:1em;height:1em;vertical-align:middle;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+    .shiba{display:inline-block;vertical-align:middle;width:1em;height:1.1em}
+    .eyebrow{display:inline-flex;align-items:center;gap:.5rem;font-size:.875rem;font-weight:500;color:rgba(17,17,17,.7)}
+    .eyebrow::before{content:"";width:.375rem;height:.375rem;border-radius:50%;background:rgba(17,17,17,.5);flex-shrink:0}
+    .eyebrow.light{color:rgba(255,255,255,.7)}.eyebrow.light::before{background:rgba(255,255,255,.6)}
+    .pill{display:inline-flex;align-items:center;gap:.75rem;border-radius:var(--radius-pill);font-size:.875rem;font-weight:500;white-space:nowrap;transition:transform .36s cubic-bezier(.2,.8,.2,1),background .24s}
+    .pill:hover{transform:scale(1.035)}
+    .pill.dark{background:var(--ink);color:white}.pill.light{background:var(--surface);color:#111}.pill.outline{border:1px solid var(--line);color:#111;background:rgba(255,255,255,.16)}
+    .pill.with-arrow{padding:.375rem .375rem .375rem 1.5rem}.pill:not(.with-arrow){padding:.875rem 1.75rem}
+    .pill .pill-icon{display:grid;place-items:center;width:2.25rem;height:2.25rem;border-radius:50%;background:#0a0a0a;color:#fff;font-size:1rem}
+    .pill.dark .pill-icon{background:#fff;color:#0a0a0a}
+    .pill .pill-icon svg{transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+    .pill:hover .pill-icon svg{transform:translate(3px,-1px)}
+    .reveal{opacity:0;transform:translateY(22px);transition:opacity .85s cubic-bezier(.16,1,.3,1),transform .85s cubic-bezier(.16,1,.3,1)}
+    .reveal.in{opacity:1;transform:none}
+    .clip-line{display:block;overflow:hidden;padding-bottom:.09em;margin-bottom:-.09em}
+    .clip-line>span{display:block;transform:translateY(110%);opacity:.1;transition:transform .9s cubic-bezier(.215,.61,.355,1),opacity .9s ease}
+    .in .clip-line>span{transform:translateY(0);opacity:1}
+    .word{display:inline-block;margin-right:.23em;opacity:0;transform:translateY(24px);transition:transform .7s cubic-bezier(.165,.84,.44,1),opacity .7s ease}
+    .in .word{opacity:1;transform:translateY(0)}
+    .hero-reveal{opacity:0;transform:translateY(14px);transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1)}
+    body.ready .hero-reveal{opacity:1;transform:none}
+    /* Intro */
+    #pageLoader{position:fixed;inset:0;z-index:120;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2rem;background:#0a0a0a;color:#fff;border-radius:0 0 2rem 2rem;transition:transform .75s cubic-bezier(.22,1,.36,1);animation:loader-failsafe 0s 5s forwards}
+    #pageLoader.leaving{transform:translateY(-102%)}
+    #pageLoader.leaving .loader-inner{opacity:0;transform:translateY(-12px)}
+    .loader-inner{display:flex;flex-direction:column;align-items:center;gap:1.25rem;text-align:center;transition:all .6s ease}
+    .loader-logo{display:flex;align-items:center;gap:.65rem;font-size:1.875rem;font-weight:600;letter-spacing:-.03em}
+    .loader-logo .shiba{font-size:2.3rem}.loader-tag{font-size:.875rem;color:rgba(255,255,255,.55);max-width:24ch;line-height:1.6}
+    .progress-block{width:min(22rem,72vw);display:grid;gap:.75rem}
+    .progress-track{height:1px;background:rgba(255,255,255,.15)}
+    .progress-fill{height:100%;width:0;background:var(--accent-from);transition:width .1s ease-out}
+    .progress-meta{display:flex;justify-content:space-between;font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;color:rgba(255,255,255,.45)}
+    #progressNum{color:rgba(255,255,255,.8);font-variant-numeric:tabular-nums}
+    @keyframes loader-failsafe{to{visibility:hidden;pointer-events:none}}
+    /* Header */
+    .header{position:absolute;inset-inline:0;top:0;z-index:50;opacity:0;transform:translateY(-14px);transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .7s cubic-bezier(.22,1,.36,1)}
+    body.ready .header{opacity:1;transform:none;transition-delay:.15s}
+    .header-inner{display:flex;align-items:center;justify-content:space-between;gap:1.5rem;padding:1.25rem}
+    .brand{display:inline-flex;align-items:center;gap:.48rem;font-size:1.125rem;font-weight:600;letter-spacing:-.025em;white-space:nowrap}
+    .brand .shiba{font-size:1.6rem;transition:transform .3s}
+    .brand:hover .shiba{transform:scale(1.08) rotate(-5deg)}
+    .nav-desktop{display:none;align-items:center;gap:1.6rem;font-size:.875rem;font-weight:500}
+    .nav-desktop a,.nav-desktop button{transition:opacity .3s,transform .3s}
+    .nav-desktop a:hover,.nav-desktop button:hover{opacity:.65;transform:translateY(-2px)}
+    .head-right{display:flex;align-items:center;gap:.5rem}
+    .clock-chip,.menu-btn{display:inline-flex;align-items:center;gap:.65rem;padding:.65rem .8rem;border:1px solid rgba(230,229,226,.8);background:rgba(255,255,255,.4);backdrop-filter:blur(5px);border-radius:.875rem;font-size:.75rem;font-weight:500}
+    .clock-chip{display:none}.clock-label{color:rgba(17,17,17,.45)}.clock-dot{color:rgba(17,17,17,.3)}
+    .time-text{min-width:3.5rem;font-variant-numeric:tabular-nums}.menu-btn{font-size:.75rem;letter-spacing:.05em;text-transform:uppercase;transition:background .25s}
+    .menu-btn:hover{background:rgba(255,255,255,.75)}.menu-btn svg{font-size:.875rem}.menu-word{display:none}
+    /* Hero and cursor reveal */
+    .hero{position:relative;isolation:isolate;overflow:hidden;border-radius:0 0 2rem 2rem;background:linear-gradient(130deg,#ecebe9,#c9c9c9)}
+    .liquid{position:absolute;inset:0;z-index:0;overflow:hidden}
+    .liquid>img,.liquid>canvas{position:absolute;inset:0;display:block;width:100%;height:100%}
+    .liquid>img{object-fit:cover}.liquid>canvas{pointer-events:none}
+    .hero-vignette{position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(to bottom,rgba(255,255,255,.52),rgba(255,255,255,.11) 46%,rgba(255,255,255,.55))}
+    .hero-watermark{position:absolute;inset-inline:0;bottom:7rem;z-index:1;text-align:center;pointer-events:none;user-select:none;font-size:var(--text-watermark);font-weight:700;letter-spacing:-.09em;line-height:1;white-space:nowrap;color:rgba(255,255,255,.4);opacity:0;transform:translateY(20px);transition:opacity 1s ease .3s,transform 1s cubic-bezier(.22,1,.36,1) .3s}
+    body.ready .hero-watermark{opacity:1;transform:none}
+    .hero-grid{position:relative;z-index:20;display:flex;flex-direction:column;gap:2rem;padding:7rem 1.25rem 5rem}
+    .hero-left{display:flex;flex-direction:column;gap:1.75rem}
+    .hero h1{max-width:18ch;font-size:2.25rem;font-weight:600;line-height:.98;letter-spacing:-.035em}
+    .hero-eyebrow{transition-delay:.2s}.hero-title{transition-delay:.25s}
+    .hero-rating{display:flex;align-items:center;flex-wrap:wrap;gap:.75rem;font-size:.875rem;font-weight:500;color:rgba(17,17,17,.7);transition-delay:.65s}
+    .five-marks{display:inline-flex;gap:.2rem;color:#b15f2c;font-size:1.1rem;letter-spacing:.05em}
+    .hero-actions{display:flex;flex-wrap:wrap;gap:.75rem;transition-delay:.75s}
+    .hero-right{display:flex;flex-direction:column;align-items:flex-start;gap:2rem}
+    .hero-card{width:100%;max-width:24rem;padding:.5rem;border-radius:1.25rem;background:rgba(255,255,255,.72);box-shadow:0 3px 18px rgba(0,0,0,.07),0 0 0 1px rgba(230,229,226,.7);backdrop-filter:blur(12px);transition-delay:.4s}
+    .hero-card-inner{display:flex;gap:.5rem;border-radius:.875rem}
+    .hero-card-illustration{aspect-ratio:1;width:6rem;display:grid;place-items:center;border-radius:.875rem;background:#0a0a0a;color:#fff;cursor:pointer}
+    .hero-card-illustration .shiba{font-size:4.2rem}
+    .hero-card-copy{min-width:0;flex:1;display:flex;flex-direction:column;justify-content:space-between;gap:1rem;padding:.75rem;border-radius:.875rem;background:rgba(241,240,238,.8)}
+    .slide-caption{font-size:.65rem;font-weight:500;text-transform:uppercase;letter-spacing:.05em;color:rgba(17,17,17,.45)}
+    .slide-title{margin-top:.4rem;max-width:9.5rem;font-size:.875rem;font-weight:500;line-height:1.35;min-height:2.4em;transition:transform .28s,opacity .28s}
+    .slide-title.changing{opacity:0;transform:translateY(-12px)}
+    .card-controls{display:flex;align-items:center;justify-content:space-between;gap:.5rem}
+    .card-dots{display:flex;align-items:center;gap:.25rem}
+    .card-dots span{width:.375rem;height:.25rem;background:rgba(17,17,17,.2);border-radius:10rem;transition:all .3s}
+    .card-dots span.active{width:1rem;background:rgba(17,17,17,.7)}
+    .card-prevnext{display:flex;align-items:center;gap:.35rem}.card-prevnext button{display:grid;place-items:center;width:1.75rem;height:1.75rem;background:#fff;color:rgba(17,17,17,.7);border:1px solid var(--line);border-radius:50%;font-size:.875rem}
+    .card-prevnext button:first-child svg{transform:rotate(180deg)}
+    .partners{width:100%;max-width:24rem;transition-delay:.55s}
+    .partners-label{margin-bottom:.75rem;font-size:.75rem;font-weight:500;color:rgba(17,17,17,.5)}
+    .partners ul{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));column-gap:.8rem;row-gap:.8rem}
+    .partners li{display:flex;align-items:center;gap:.35rem;font-size:.7rem;color:rgba(17,17,17,.7);transition:transform .3s,opacity .3s}
+    .partners li:hover{transform:translateY(-2px);opacity:.8}
+    .partner-dot{width:.75rem;height:.75rem;border:1.5px solid rgba(17,17,17,.35);border-radius:50%;position:relative;flex-shrink:0}
+    .partner-dot::after{content:"";position:absolute;inset:30%;background:rgba(17,17,17,.4);border-radius:50%}
+    .hero-bottom{position:relative;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:.75rem;border-top:1px solid rgba(17,17,17,.1);padding:1.25rem;font-size:.75rem;font-weight:500;text-transform:uppercase;letter-spacing:.025em;color:rgba(17,17,17,.6);transition-delay:.9s}
+    .hero-bottom .center-status{display:none}.scroll-status{display:inline-flex;align-items:center;gap:.5rem}
+    /* About */
+    .about-grid{display:grid;grid-template-columns:1fr;align-items:center;gap:3rem;padding:5rem 1.25rem}
+    .about-left{position:relative;min-height:14rem;display:flex;flex-direction:column;justify-content:space-between;overflow:visible}
+    .about-ghost{position:absolute;left:-1rem;top:50%;transform:translateY(-50%);font-size:13rem;opacity:.11;filter:grayscale(1)}
+    .about-left>.eyebrow,.about-sub{position:relative;z-index:1}
+    .about-sub{display:flex;align-items:center;gap:.75rem;max-width:19rem;font-size:.875rem;line-height:1.55;color:rgba(17,17,17,.7)}
+    .about-sub .shiba{font-size:2rem}
+    .about-right{display:flex;flex-direction:column;gap:2.5rem}
+    .about-statement{font-size:1.5rem;font-weight:500;line-height:1.35;letter-spacing:-.01em}
+    .muted-copy{color:#8d8d8d}
+    .about-links{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:1.5rem;border-top:1px solid var(--line);padding-top:1.5rem}
+    .about-links-label{font-size:.875rem;color:rgba(17,17,17,.45);margin-bottom:.65rem}
+    .socials{display:flex;align-items:center;gap:.5rem}
+    .social-chip{display:grid;place-items:center;width:2.25rem;height:2.25rem;border-radius:50%;background:var(--surface);font-size:.75rem;font-weight:700;color:rgba(17,17,17,.7);transition:transform .3s}
+    .social-chip:first-child{background:var(--accent);color:#fff}.social-chip:hover{transform:scale(1.15)}
+    /* Band */
+    .band{display:flex;flex-direction:column;gap:.75rem;padding:2.5rem 1.25rem}
+    .band li{flex:1;min-width:0}.band-tile{display:grid;place-items:center;height:6rem;border-radius:9999px;font-size:1.875rem;font-weight:500;transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+    .band-tile:hover{transform:scale(1.03)}.band li:nth-child(1) .band-tile{background:var(--surface);color:#111}
+    .band li:nth-child(2) .band-tile{background:linear-gradient(135deg,#cf8047,#97501f);color:#fff}
+    .band li:nth-child(3) .band-tile{background:#0a0a0a;color:#fff;font-size:2.5rem}
+    .band li:nth-child(4) .band-tile{background:rgba(241,240,238,.6);color:rgba(17,17,17,.35)}
+    /* E-books */
+    .portfolio-shell{padding:2.5rem 1.25rem 5rem}
+    .section-top-center{text-align:center;display:flex;flex-direction:column;align-items:center;gap:1rem;margin-bottom:3.5rem}
+    .eyebrow.framed{padding:.375rem 1rem;border:1px solid var(--line);border-radius:9999px}
+    .section-title{font-size:2.25rem;font-weight:600;letter-spacing:-.025em;line-height:1.08}
+    .section-desc{max-width:37rem;font-size:.875rem;color:rgba(17,17,17,.5);line-height:1.6}
+    .book-grid{display:grid;grid-template-columns:1fr;gap:1.5rem}
+    .book-card{position:relative;min-height:22rem;overflow:hidden;border-radius:2rem;background:#0a0a0a;color:#fff;padding:1.5rem;text-align:left;transition:transform .55s cubic-bezier(.16,1,.3,1),box-shadow .35s;display:block;width:100%;isolation:isolate}
+    .book-card:hover{transform:translateY(-8px) scale(1.012);box-shadow:0 14px 30px rgba(0,0,0,.12)}
+    .book-card::before{content:"";position:absolute;left:-25%;top:-45%;width:90%;height:90%;background:radial-gradient(circle,rgba(177,95,44,.14),transparent 70%);pointer-events:none}
+    .book-top{display:flex;align-items:center;justify-content:space-between;gap:1rem;position:relative;z-index:2;font-size:.75rem;text-transform:uppercase;letter-spacing:.025em;color:rgba(255,255,255,.45)}
+    .book-arrow{display:grid;place-items:center;width:2.75rem;height:2.75rem;flex-shrink:0;border-radius:50%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);color:#fff;font-size:1.2rem;transition:transform .35s}
+    .book-card:hover .book-arrow{transform:rotate(45deg) scale(1.08)}
+    .book-emblem{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none;z-index:0;color:#fff}
+    .book-emblem .shiba{font-size:8rem;opacity:.74;filter:drop-shadow(0 10px 24px rgba(0,0,0,.16))}
+    .book-emblem .reg{position:absolute;left:calc(50% + 4rem);top:calc(50% - 4rem);font-size:.75rem;color:rgba(255,255,255,.6)}
+    .book-bottom{position:absolute;bottom:1.5rem;left:1.5rem;right:1.5rem;z-index:2}
+    .book-bottom h3{font-size:1.5rem;letter-spacing:-.01em;font-weight:500}
+    .book-bottom p{max-width:28rem;margin-top:.5rem;font-size:.875rem;line-height:1.5;color:rgba(255,255,255,.57)}
+    .tags{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.25rem}
+    .tags span{border:1px solid rgba(255,255,255,.25);color:#fff;border-radius:9999px;padding:.45rem .85rem;font-size:.775rem}
+    /* Services */
+    .services-shell{padding:5rem 1.25rem}
+    .services-title{max-width:18ch;margin:1.25rem 0 3rem}
+    .service-item{border-bottom:1px solid var(--line)}.service-item:first-child{border-top:1px solid var(--line)}
+    .service-button{display:flex;align-items:center;gap:1rem;width:100%;padding:1.5rem;text-align:left;border-radius:1.25rem;transition:background .4s,padding .4s}
+    .service-button:hover{background:var(--surface);padding-left:2rem;padding-right:1.25rem}
+    .service-no{width:1.75rem;flex-shrink:0;font-size:.875rem;font-weight:500;color:rgba(17,17,17,.4)}
+    .service-button h3{flex:1;font-size:1.5rem;font-weight:500;letter-spacing:-.01em}
+    .service-button p{display:none;max-width:20rem;font-size:.875rem;line-height:1.45;color:rgba(17,17,17,.55)}
+    .service-arrow{display:grid;place-items:center;width:2.5rem;height:2.5rem;flex-shrink:0;border-radius:50%;background:#0a0a0a;color:white;font-size:1.15rem}
+    .service-arrow svg{transition:transform .3s}.service-button:hover .service-arrow svg{transform:translate(3px,-3px)}
+    /* Stats */
+    .stats-shell{padding:0 1.25rem 5rem}
+    .stats-panel{border-radius:2rem;background:#0a0a0a;padding:3rem 1.5rem;color:#fff}
+    .stats-panel h2{margin-top:1rem;max-width:20ch;font-size:1.875rem;font-weight:500;letter-spacing:-.01em}
+    .stats-list{margin-top:3.5rem;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:2rem;row-gap:3rem}
+    .stat-num{font-size:3rem;font-weight:600;letter-spacing:-.03em;font-variant-numeric:tabular-nums;white-space:nowrap}
+    .stat-label{margin-top:.75rem;font-size:.875rem;line-height:1.4;color:rgba(255,255,255,.55)}
+    .disclaimer{margin-top:3rem;border-top:1px solid rgba(255,255,255,.12);padding-top:1.4rem;max-width:60rem;font-size:.77rem;line-height:1.6;color:rgba(255,255,255,.48)}
+    /* Footer */
+    .footer{position:relative;overflow:hidden;border-radius:2rem 2rem 0 0;background:#0a0a0a;color:#fff}
+    .footer-inner{position:relative;z-index:10;padding:5rem 1.25rem 2.5rem}
+    .footer-cta{display:flex;flex-direction:column;gap:2rem;border-bottom:1px solid rgba(255,255,255,.1);padding-bottom:4rem}
+    .footer-cta h2{max-width:16ch;font-size:2.25rem;font-weight:600;letter-spacing:-.025em;line-height:1.1}
+    .footer-columns{display:grid;grid-template-columns:1fr;gap:3rem;padding-block:4rem}
+    .footer-brand-text{max-width:20rem;margin-top:1.2rem;font-size:.875rem;line-height:1.65;color:rgba(255,255,255,.55)}
+    .footer-group h3{font-size:.75rem;text-transform:uppercase;letter-spacing:.025em;font-weight:500;color:rgba(255,255,255,.4);margin-bottom:1.35rem}
+    .footer-group ul{display:flex;flex-direction:column;gap:.85rem}
+    .footer-group button,.footer-group a,.legal a{display:inline-block;font-size:.875rem;color:rgba(255,255,255,.65);transition:color .25s,transform .25s;text-align:left}
+    .footer-group button:hover,.footer-group a:hover,.legal a:hover{color:#fff;transform:translateX(4px)}
+    .legal{display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:1rem;border-top:1px solid rgba(255,255,255,.1);padding-top:2rem;font-size:.75rem;color:rgba(255,255,255,.45)}
+    .legal-links{display:flex;gap:1.5rem}.legal a{font-size:.75rem}
+    .footer-watermark{position:absolute;bottom:-1.5rem;inset-inline:0;z-index:0;text-align:center;pointer-events:none;font-size:13rem;font-weight:700;letter-spacing:-.09em;line-height:1;white-space:nowrap;color:rgba(255,255,255,.05)}
+    /* Navigation overlay */
+    .nav-overlay{position:fixed;inset:0;z-index:115;display:flex;flex-direction:column;background:#0a0a0a;color:#fff;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .45s,visibility .45s}
+    .nav-overlay.open{opacity:1;visibility:visible;pointer-events:auto}
+    .nav-overlay-top{display:flex;align-items:center;justify-content:space-between;padding:1.25rem}
+    .nav-overlay .brand{color:#fff}
+    .close-nav{display:inline-flex;align-items:center;gap:.5rem;border:1px solid rgba(255,255,255,.15);border-radius:.875rem;padding:.55rem 1rem;font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;color:rgba(255,255,255,.7)}
+    .close-nav:hover{color:white;border-color:rgba(255,255,255,.4)}
+    .nav-big{flex:1;display:flex;flex-direction:column;justify-content:center;width:100%;padding:1.5rem}
+    .nav-big li{opacity:0;transform:translateY(1rem);transition:transform .5s ease,opacity .5s ease}
+    .nav-overlay.open .nav-big li{opacity:1;transform:none}
+    .nav-big button{display:flex;align-items:baseline;gap:1rem;width:100%;padding:.42rem 0;text-align:left;font-size:2.25rem;font-weight:600;letter-spacing:-.025em;color:rgba(255,255,255,.7);transition:color .25s}
+    .nav-big button:hover{color:white}
+    .nav-big small{font-size:1rem;font-weight:400;color:rgba(255,255,255,.3);letter-spacing:0}
+    .nav-big button:hover small{color:var(--accent-from)}
+    .nav-overlay-bottom{display:flex;flex-direction:column;gap:.75rem;border-top:1px solid rgba(255,255,255,.1);padding:1.5rem;font-size:.75rem;color:rgba(255,255,255,.45);text-transform:uppercase;letter-spacing:.025em}
+    .nav-overlay-bottom button{text-align:left;color:rgba(255,255,255,.8);font-size:.75rem;text-transform:uppercase}
+    /* Modal */
+    .modal-backdrop{position:fixed;inset:0;z-index:118;display:flex;align-items:flex-end;justify-content:center;padding:1rem;background:rgba(17,17,17,.3);backdrop-filter:blur(16px);opacity:0;visibility:hidden;pointer-events:none;transition:all .35s}
+    .modal-backdrop.open{opacity:1;visibility:visible;pointer-events:auto}
+    .modal{position:relative;width:100%;max-width:32rem;max-height:calc(100dvh - 2rem);overflow-y:auto;border-radius:2rem;background:white;padding:1.5rem;box-shadow:0 20px 80px rgba(0,0,0,.2);border:1px solid var(--line);opacity:0;transform:translateY(28px);transition:opacity .4s cubic-bezier(.16,1,.3,1),transform .4s cubic-bezier(.16,1,.3,1)}
+    .modal-backdrop.open .modal{opacity:1;transform:none}
+    .modal-close{position:absolute;right:1rem;top:1rem;width:2.25rem;height:2.25rem;display:grid;place-items:center;border-radius:50%;background:var(--surface);color:rgba(17,17,17,.6)}
+    .modal-close:hover{background:var(--surface-2);color:#111}
+    .modal-sub{display:inline-flex;align-items:center;gap:.5rem;font-size:.875rem;font-weight:500;color:rgba(17,17,17,.6)}
+    .modal-sub::before{content:"";width:.375rem;height:.375rem;border-radius:50%;background:var(--accent)}
+    .modal h2{margin-top:.375rem;font-size:1.5rem;letter-spacing:-.01em;font-weight:600;max-width:90%}
+    .modal-intro{font-size:.835rem;color:rgba(17,17,17,.56);line-height:1.55;margin-top:.75rem}
+    .modal-form{display:flex;flex-direction:column;gap:1rem;margin-top:1.5rem}
+    .form-field{display:block;font-size:.75rem;font-weight:500;text-transform:uppercase;letter-spacing:.025em;color:rgba(17,17,17,.5)}
+    .form-field input,.form-field textarea,.form-field select{display:block;width:100%;margin-top:.5rem;border:1px solid var(--line);background:rgba(241,240,238,.55);border-radius:.875rem;padding:.75rem 1rem;font-size:.875rem;font-weight:400;color:#111;outline:none;transition:border .2s,background .2s}
+    .form-field input:focus,.form-field textarea:focus,.form-field select:focus{border-color:rgba(17,17,17,.4);background:white}
+    .form-field textarea{resize:vertical;min-height:5.3rem;line-height:1.5}
+    .form-actions{margin-top:.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+    .form-note{max-width:14rem;font-size:.75rem;line-height:1.5;color:rgba(17,17,17,.48)}
+    .success-content{display:none;text-align:center;padding:2rem 0}
+    .success-icon{width:3.5rem;height:3.5rem;display:grid;place-items:center;margin:0 auto 1rem;border-radius:50%;background:#0a0a0a;font-size:2.15rem}
+    .success-content h2{max-width:none}.success-content p{font-size:.875rem;line-height:1.6;color:rgba(17,17,17,.6);margin:1rem auto;max-width:36ch}
+    .success-content textarea{display:block;width:100%;resize:vertical;min-height:7rem;border:1px solid var(--line);background:var(--surface);border-radius:.875rem;padding:.85rem;margin:1rem 0 1.25rem;font-size:.82rem;line-height:1.5}
+    .success-actions{display:flex;gap:.75rem;justify-content:center;flex-wrap:wrap}
+    .modal.done .modal-form,.modal.done .modal-form-heading{display:none}.modal.done .success-content{display:block}
+    .small-alert{margin-top:1rem;font-size:.75rem;line-height:1.5;color:#8d8d8d}
+    /* Responsive */
+    @media(max-width:1920px){html{font-size:.833333vw}}
+    @media(max-width:1440px){html{font-size:1.111111vw}}
+    @media(max-width:1024px){html{font-size:1.5625vw}}
+    @media(max-width:640px){html{font-size:4.444444vw}}
+    @media(min-width:640px){
+      .header-inner{padding:1.5rem 2rem}.menu-word{display:inline}
+      .hero-grid{padding-inline:2rem}.hero-bottom{padding-inline:2rem}.hero-bottom .center-status{display:inline}
+      .hero h1{font-size:3rem}.about-grid{padding-inline:2rem}.about-ghost{font-size:16rem}
+      .about-statement{font-size:1.875rem}
+      .band{flex-direction:row;gap:1rem;padding-inline:2rem}.band-tile{height:10rem;font-size:2.25rem}
+      .portfolio-shell{padding-inline:2rem}.section-title{font-size:3rem}
+      .book-card{min-height:26rem;padding:2rem}.book-bottom{bottom:2rem;left:2rem;right:2rem}.book-bottom h3{font-size:1.875rem}
+      .services-shell{padding-inline:2rem}.services-title{margin-bottom:3.5rem}
+      .service-button{gap:1.5rem;padding-block:2rem}.service-no{width:2.5rem}.service-button h3{font-size:1.875rem}.service-arrow{width:3rem;height:3rem}
+      .stats-shell{padding-inline:2rem}.stats-panel{padding:4rem 2rem}.stat-num{font-size:3.75rem}
+      .footer-inner{padding-inline:2rem}.footer-cta h2{font-size:3rem}.legal{flex-direction:row}.nav-overlay-top{padding:1.5rem 2rem}.nav-big{padding-inline:2rem}.nav-big button{font-size:3.75rem}
+      .nav-overlay-bottom{flex-direction:row;align-items:center;justify-content:space-between;padding-inline:2rem}
+      .modal-backdrop{align-items:center}.modal{padding:2rem}.modal h2{font-size:1.875rem}
+    }
+    @media(min-width:768px){
+      .clock-chip{display:inline-flex}.book-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .stats-panel{padding-inline:4rem}.stat-num{font-size:4.5rem}.stats-panel h2{font-size:2.25rem}
+      .footer-columns{grid-template-columns:repeat(2,minmax(0,1fr))}.footer-cta h2{font-size:3.75rem}
+      .service-button h3{font-size:2.25rem}
+    }
+    @media(min-width:1024px){
+      .nav-desktop{display:flex}
+      .hero-grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));min-height:100lvh;gap:2.5rem;padding:9rem 2rem 7rem}
+      .hero-left{grid-column:span 7}.hero-right{grid-column:span 5;align-items:flex-end}
+      .hero h1{font-size:3.75rem}.hero-card,.partners{width:19rem}.partners-label{text-align:right}
+      .about-grid{grid-template-columns:1fr 1fr;padding-block:7rem}.about-left{min-height:20rem}.about-ghost{left:-1.5rem;font-size:20rem}
+      .portfolio-shell{padding-bottom:7rem}.services-shell{padding-block:7rem}.service-button p{display:block}
+      .stats-shell{padding-bottom:7rem}.stats-list{grid-template-columns:repeat(4,minmax(0,1fr))}
+      .footer-inner{padding-top:6rem}.footer-cta{flex-direction:row;align-items:flex-end;justify-content:space-between}
+      .footer-columns{grid-template-columns:repeat(4,minmax(0,1fr))}
+    }
+    @media(max-width:639px){
+      .hero-watermark{font-size:3.25rem;bottom:8.5rem}
+      .footer-watermark{font-size:3.25rem;bottom:0}
+      .hero-grid{gap:3rem;padding-top:7.5rem}.hero h1{font-size:2.85rem}
+      .hero-vignette{background:linear-gradient(to bottom,rgba(255,255,255,.66),rgba(255,255,255,.2),rgba(255,255,255,.64))}
+      .partners li{font-size:.61rem}.hero-bottom{font-size:.6rem}.band-tile{height:5rem}
+      .hero-card{max-width:none}.book-emblem .shiba{font-size:7rem}
+      .stat-num{font-size:2.85rem}.service-button{padding-inline:.35rem;gap:.7rem}.service-button h3{font-size:1.35rem}
+      .footer-cta h2{font-size:2.55rem}.section-title{font-size:2.4rem}
+    }
+    @media(prefers-reduced-motion:reduce){
+      *,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
+      .reveal,.hero-reveal,.clip-line>span,.word{opacity:1!important;transform:none!important}
+      #pageLoader{display:none!important}.header{opacity:1!important;transform:none!important}
+    }
+
+    /* Subtle mascot motion: calm, professional, and respects reduced-motion. */
+    @keyframes shibaBreathe {
+      0%,100% { transform: translateY(0) rotate(-1.5deg); }
+      50% { transform: translateY(-9px) rotate(1.5deg); }
+    }
+    .hero-card-illustration .shiba { animation: shibaBreathe 3.8s ease-in-out infinite; transform-origin: 50% 80%; }
+    .book-emblem .shiba { animation: shibaBreathe 5.2s ease-in-out infinite; transform-origin: 50% 80%; }
+    .book-grid li:nth-child(2) .shiba { animation-delay:-1.3s; }
+    .book-grid li:nth-child(3) .shiba { animation-delay:-2.6s; }
+    .book-grid li:nth-child(4) .shiba { animation-delay:-3.8s; }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-card-illustration .shiba,.book-emblem .shiba { animation:none!important; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Simple vector Shiba avatar with signature dark collar, gold Y pendant and suit. -->
+  <svg aria-hidden="true" width="0" height="0" style="position:absolute;overflow:hidden;width:0;height:0" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <symbol id="icon-shiba" viewBox="0 0 120 132">
+        <path d="M17 52 12 3 48 24l12 12L74 24 110 3l-7 49" fill="#AC632F" stroke="#78431D" stroke-width="2.5" stroke-linejoin="round"/>
+        <path d="M25 37 20 14 42 28M95 37l5-23-22 14" fill="#EAB47D"/>
+        <path d="M9 70C9 36 30 21 60 21s51 15 51 49c0 29-20 49-51 49S9 99 9 70Z" fill="#BB733A" stroke="#86461F" stroke-width="2.5"/>
+        <path d="M16 76c1-13 9-21 19-20 10 0 18 9 25 13 7-4 15-13 25-13 10-1 18 7 19 20-1 22-17 35-44 35S17 98 16 76Z" fill="#F5EBDD"/>
+        <path d="M34 60c5-4 11-4 16 0M70 60c5-4 11-4 16 0" fill="none" stroke="#2B211E" stroke-width="4.5" stroke-linecap="round"/>
+        <path d="M51 76q9-7 18 0-3 8-9 8t-9-8Z" fill="#27211E"/>
+        <path d="M60 83v6m0 0q-6 6-12 1m12-1q6 6 12 1" fill="none" stroke="#50372A" stroke-width="2.5" stroke-linecap="round"/>
+        <ellipse cx="28" cy="79" rx="7" ry="3.5" fill="#D69A72" opacity=".55"/><ellipse cx="92" cy="79" rx="7" ry="3.5" fill="#D69A72" opacity=".55"/>
+        <path d="M23 104 11 128h98l-12-24-18-5-19 10-19-10Z" fill="#151515"/>
+        <path d="m42 101 18 17 18-17-8-3-10 10-10-10Z" fill="#F5F3EF"/>
+        <path d="m52 110 8 8 8-8-7-2Z" fill="#303030"/>
+        <path d="m34 91 26 25 26-25" stroke="#191919" stroke-width="6" fill="none" stroke-linecap="round"/>
+        <circle cx="60" cy="116" r="10" fill="#CDA24E" stroke="#85581F" stroke-width="2"/>
+        <path d="m55 111 5 5 5-5m-5 5v5" fill="none" stroke="#2C593D" stroke-width="2.7" stroke-linecap="round" stroke-linejoin="round"/>
+      </symbol>
+      <symbol id="icon-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+      <symbol id="icon-up-right" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9"/></symbol>
+      <symbol id="icon-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+      <symbol id="icon-close" viewBox="0 0 24 24"><path d="M4 4l16 16M20 4 4 20"/></symbol>
+    </defs>
+  </svg>
+  <a class="skip-link" href="#main">Lewati ke konten</a>
+  <div id="pageLoader" aria-label="Memuat YooImprove">
+    <div class="loader-inner">
+      <div class="loader-logo"><svg class="shiba"><use href="#icon-shiba"/></svg><span>YooImprove</span></div>
+      <p class="loader-tag">Mulai dari paham, lalu bertumbuh.</p>
+    </div>
+    <div class="progress-block" aria-hidden="true">
+      <div class="progress-track"><div id="progressFill" class="progress-fill"></div></div>
+      <div class="progress-meta"><span>Memuat halaman</span><span id="progressNum">000</span></div>
+    </div>
+  </div>
+
+  <header class="header" id="header">
+    <div class="header-inner shell">
+      <button class="brand" data-goto="home" aria-label="YooImprove, kembali ke beranda"><svg class="shiba" aria-hidden="true"><use href="#icon-shiba"/></svg>YooImprove</button>
+      <nav class="nav-desktop" aria-label="Navigasi utama">
+        <a href="#home" aria-current="page" data-goto="home">Beranda</a>
+        <a href="#works" data-goto="works">E-book</a>
+        <a href="#services" data-goto="services">Materi <span style="font-size:.75rem;opacity:.55">⌄</span></a>
+        <a href="#about" data-goto="about">Tentang</a>
+        <a href="#stats" data-goto="stats">Program VIP</a>
+        <button data-contact="Konsultasi umum">Kontak</button>
+      </nav>
+      <div class="head-right">
+        <div class="clock-chip" aria-label="Waktu Indonesia Barat"><span class="clock-label">WIB</span><time class="time-text js-time">--:--</time><span class="clock-dot">•</span><time class="js-date">--</time></div>
+        <button class="menu-btn" id="openMenu" aria-controls="navOverlay" aria-expanded="false"><svg class="ico" aria-hidden="true"><use href="#icon-menu"/></svg><span class="menu-word">Menu</span></button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section id="home" class="hero" aria-label="YooImprove beranda">
+      <div class="liquid" id="liquidReveal" aria-hidden="true">
+        <img id="heroBase" fetchpriority="high" src="https://api.getlayers.ai/storage/v1/object/public/public/assets/lumora-e8b711fc68/hero/after.jpg" alt="" />
+        <canvas id="liquidCanvas"></canvas>
+      </div>
+      <div class="hero-vignette"></div>
+      <div class="hero-watermark">YOOIMPROVE</div>
+      <div class="hero-grid shell">
+        <div class="hero-left">
+          <p class="eyebrow hero-reveal hero-eyebrow">Ruang belajar saham Indonesia</p>
+          <h1 class="hero-reveal hero-title">
+            <span class="clip-line"><span style="transition-delay:.25s">Kenali pasar,</span></span>
+            <span class="clip-line"><span style="transition-delay:.37s">pahami risiko,</span></span>
+            <span class="clip-line"><span style="transition-delay:.49s">tumbuh perlahan.</span></span>
+          </h1>
+          <div class="hero-rating hero-reveal"><span class="five-marks" aria-hidden="true">✦ ✦ ✦ ✦ ✦</span><span>Belajar dengan logika, bukan sekadar ikut tren.</span></div>
+          <div class="hero-actions hero-reveal">
+            <button class="pill dark with-arrow" data-goto="works">Jelajahi E-book <span class="pill-icon"><svg class="ico"><use href="#icon-arrow"/></svg></span></button>
+            <button class="pill outline with-arrow" data-goto="services">Lihat Materi <span class="pill-icon"><svg class="ico"><use href="#icon-arrow"/></svg></span></button>
+          </div>
+        </div>
+        <div class="hero-right">
+          <div class="hero-card hero-reveal" aria-label="Sorotan YooImprove">
+            <div class="hero-card-inner">
+              <button class="hero-card-illustration" id="heroSlideOpen" aria-label="Lihat sorotan"><svg class="shiba" aria-hidden="true"><use href="#icon-shiba"/></svg></button>
+              <div class="hero-card-copy">
+                <div><p id="slideCaption" class="slide-caption">E-book pemula</p><p id="slideTitle" class="slide-title">Mulai dari fondasi.</p></div>
+                <div class="card-controls"><div class="card-dots" id="cardDots" aria-hidden="true"><span class="active"></span><span></span><span></span></div>
+                  <div class="card-prevnext"><button id="prevSlide" aria-label="Sorotan sebelumnya"><svg class="ico"><use href="#icon-arrow"/></svg></button><button id="nextSlide" aria-label="Sorotan berikutnya"><svg class="ico"><use href="#icon-arrow"/></svg></button></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="partners hero-reveal" id="partners"><p class="partners-label">Topik yang bisa kamu pelajari</p>
+            <ul><li><i class="partner-dot"></i>Dasar</li><li><i class="partner-dot"></i>Teknikal</li><li><i class="partner-dot"></i>Fundamental</li><li><i class="partner-dot"></i>Risiko</li><li><i class="partner-dot"></i>Psikologi</li><li><i class="partner-dot"></i>Dividen</li><li><i class="partner-dot"></i>Bandar</li><li><i class="partner-dot"></i>Istilah</li></ul>
+          </div>
+        </div>
+      </div>
+      <div class="hero-bottom shell hero-reveal"><span>Dibuat untuk investor yang mau belajar</span><span class="center-status">Dari dasar menuju lebih paham</span><span class="scroll-status">Gulir untuk jelajah ↓</span></div>
+    </section>
+
+    <section id="about" aria-labelledby="about-title">
+      <div class="about-grid shell">
+        <div class="about-left"><svg class="shiba about-ghost" aria-hidden="true"><use href="#icon-shiba"/></svg>
+          <p class="eyebrow reveal">Kenali YooImprove</p>
+          <div class="about-sub reveal"><svg class="shiba" aria-hidden="true"><use href="#icon-shiba"/></svg><span>Shiba kami menemani setiap langkah belajar—tenang, penasaran, dan terus berkembang.</span></div>
+        </div>
+        <div class="about-right">
+          <h2 id="about-title" class="about-statement reveal" data-word-reveal>YooImprove membantu pemula membangun pemahaman saham yang terstruktur. <span class="muted-copy">Kenali cara kerja pasar, pelajari analisis, pahami risiko, dan ambil keputusan dengan lebih sadar.</span></h2>
+          <div class="about-links reveal"><div><p class="about-links-label">Terhubung dan diskusi</p><div class="socials"><button class="social-chip" data-contact="Instagram" aria-label="Informasi Instagram">IG</button><button class="social-chip" data-contact="TikTok" aria-label="Informasi TikTok">Tk</button><button class="social-chip" data-contact="Telegram" aria-label="Informasi Telegram">Tg</button></div></div><button class="pill outline with-arrow" data-goto="services">Kenali Program <span class="pill-icon"><svg class="ico"><use href="#icon-arrow"/></svg></span></button></div>
+        </div>
+      </div>
+    </section>
+
+    <section aria-label="Slogan YooImprove"><ul class="band shell"><li class="reveal"><div class="band-tile">Belajar</div></li><li class="reveal"><div class="band-tile">Paham</div></li><li class="reveal"><div class="band-tile"><svg class="ico" aria-hidden="true"><use href="#icon-arrow"/></svg></div></li><li class="reveal"><div class="band-tile">Tumbuh</div></li></ul></section>
+
+    <section id="works" aria-labelledby="works-title">
+      <div class="portfolio-shell shell">
+        <div class="section-top-center"><p class="eyebrow framed reveal">Perpustakaan YooImprove</p><h2 id="works-title" class="section-title reveal">Koleksi E-book</h2><p class="section-desc reveal">Bahan belajar yang bisa kamu ikuti sesuai kebutuhan, dari pengenalan pasar sampai membaca perilaku pelaku pasar.</p></div>
+        <ul class="book-grid">
+          <li class="reveal"><button class="book-card" data-contact="E-book Gratis: Memahami Saham dari Nol"><div class="book-top"><span>Dasar Saham — 01</span><span class="book-arrow"><svg class="ico"><use href="#icon-up-right"/></svg></span></div><div class="book-emblem"><svg class="shiba"><use href="#icon-shiba"/></svg><span class="reg">®</span></div><div class="book-bottom"><h3>Memahami Saham dari Nol</h3><p>Pintu masuk untuk mengenal saham, pasar modal, dan istilah paling penting.</p><div class="tags"><span>E-book Gratis</span><span>Pemula</span><span>Dasar</span></div></div></button></li>
+          <li class="reveal"><button class="book-card" data-contact="E-book Kamus Istilah Saham A–Z"><div class="book-top"><span>Literasi Saham — 02</span><span class="book-arrow"><svg class="ico"><use href="#icon-up-right"/></svg></span></div><div class="book-emblem"><svg class="shiba"><use href="#icon-shiba"/></svg><span class="reg">®</span></div><div class="book-bottom"><h3>Kamus Istilah Saham A–Z</h3><p>Memahami bahasa pasar: lot, bid–offer, breakout, dividen, dan lainnya.</p><div class="tags"><span>Glosarium</span><span>Referensi</span><span>A–Z</span></div></div></button></li>
+          <li class="reveal"><button class="book-card" data-contact="E-book Analisis Fundamental"><div class="book-top"><span>Analisis — 03</span><span class="book-arrow"><svg class="ico"><use href="#icon-up-right"/></svg></span></div><div class="book-emblem"><svg class="shiba"><use href="#icon-shiba"/></svg><span class="reg">®</span></div><div class="book-bottom"><h3>Analisis Fundamental</h3><p>Belajar membaca bisnis, laporan keuangan, dan valuasi dengan pendekatan yang lebih terukur.</p><div class="tags"><span>Fundamental</span><span>Valuasi</span><span>Keuangan</span></div></div></button></li>
+          <li class="reveal"><button class="book-card" data-contact="E-book Bandarmology"><div class="book-top"><span>Analisis — 04</span><span class="book-arrow"><svg class="ico"><use href="#icon-up-right"/></svg></span></div><div class="book-emblem"><svg class="shiba"><use href="#icon-shiba"/></svg><span class="reg">®</span></div><div class="book-bottom"><h3>Memahami Bandarmology</h3><p>Mengenal broker summary, arus transaksi, dan batas interpretasi aktivitas pasar.</p><div class="tags"><span>Order Flow</span><span>Broker</span><span>Pasar</span></div></div></button></li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="services" aria-labelledby="services-title"><div class="services-shell shell"><p class="eyebrow reveal">Pembelajaran & Program</p><h2 id="services-title" class="section-title services-title reveal">Belajar sesuai kebutuhanmu.</h2>
+      <ul class="services-list">
+        <li class="service-item reveal"><button class="service-button" data-contact="Belajar Saham dari Nol"><span class="service-no">01</span><h3>Saham dari Nol</h3><p>Mulai dari BEI, saham, lot, transaksi, sampai cara mengelola risiko.</p><span class="service-arrow"><svg class="ico"><use href="#icon-up-right"/></svg></span></button></li>
+        <li class="service-item reveal"><button class="service-button" data-contact="Belajar Analisis Teknikal"><span class="service-no">02</span><h3>Analisis Teknikal</h3><p>Pelajari candlestick, tren, support–resistance, volume, dan skenario.</p><span class="service-arrow"><svg class="ico"><use href="#icon-up-right"/></svg></span></button></li>
+        <li class="service-item reveal"><button class="service-button" data-contact="Belajar Fundamental"><span class="service-no">03</span><h3>Analisis Fundamental</h3><p>Bangun kebiasaan menilai kinerja perusahaan sebelum mengambil keputusan.</p><span class="service-arrow"><svg class="ico"><use href="#icon-up-right"/></svg></span></button></li>
+        <li class="service-item reveal"><button class="service-button" data-contact="Informasi VIP Umum / VIP Privat"><span class="service-no">04</span><h3>VIP Umum & Privat</h3><p>Dua pilihan program untuk belajar dan berdiskusi lebih terarah.</p><span class="service-arrow"><svg class="ico"><use href="#icon-up-right"/></svg></span></button></li>
+      </ul>
+    </div></section>
+
+    <section id="stats" aria-labelledby="stats-title"><div class="stats-shell shell"><div class="stats-panel reveal"><p class="eyebrow light">Sekilas YooImprove</p><h2 id="stats-title">Sederhana, terarah, dan terus berkembang.</h2>
+      <ul class="stats-list"><li class="reveal"><div class="stat-num"><span data-count="4">0</span></div><p class="stat-label">Pilihan e-book</p></li><li class="reveal"><div class="stat-num"><span data-count="2">0</span></div><p class="stat-label">Pilihan program VIP</p></li><li class="reveal"><div class="stat-num"><span data-count="4">0</span></div><p class="stat-label">Jalur belajar utama</p></li><li class="reveal"><div class="stat-num"><span data-count="1">0</span></div><p class="stat-label">Tujuan: jadi lebih paham</p></li></ul>
+      <p class="disclaimer">Catatan: YooImprove menyediakan materi edukasi, bukan nasihat investasi personal, ajakan membeli/menjual efek, atau jaminan keuntungan. Harga, ketersediaan e-book, serta detail akses program VIP perlu dikonfirmasi melalui admin resmi.</p>
+    </div></div></section>
+  </main>
+
+  <footer class="footer" id="contact"><div class="footer-watermark">YOOIMPROVE</div><div class="footer-inner shell">
+    <div class="footer-cta"><h2 class="reveal"><span class="clip-line"><span>Langkah belajarmu</span></span><span class="clip-line"><span>dimulai dari sini.</span></span></h2><button class="pill light with-arrow reveal" data-contact="Mulai belajar bersama YooImprove">Hubungi YooImprove <span class="pill-icon"><svg class="ico"><use href="#icon-up-right"/></svg></span></button></div>
+    <div class="footer-columns"><div><button class="brand" data-goto="home"><svg class="shiba" aria-hidden="true"><use href="#icon-shiba"/></svg>YooImprove</button><p class="footer-brand-text">Ruang untuk mengenal pasar saham, memperluas wawasan, dan belajar mengambil keputusan dengan pemahaman risiko.</p></div>
+      <div class="footer-group"><h3>Jelajahi</h3><ul><li><a href="#about" data-goto="about">Tentang Kami</a></li><li><a href="#works" data-goto="works">Koleksi E-book</a></li><li><a href="#services" data-goto="services">Materi Belajar</a></li><li><button data-contact="Program VIP">Program VIP</button></li></ul></div>
+      <div class="footer-group"><h3>Materi</h3><ul><li><button data-contact="Saham Dasar">Saham Dasar</button></li><li><button data-contact="Analisis Teknikal">Analisis Teknikal</button></li><li><button data-contact="Analisis Fundamental">Analisis Fundamental</button></li><li><button data-contact="Bandarmology">Bandarmology</button></li></ul></div>
+      <div class="footer-group"><h3>Terhubung</h3><ul><li><button data-contact="Instagram">Instagram</button></li><li><button data-contact="TikTok">TikTok</button></li><li><button data-contact="Telegram">Telegram</button></li><li><button data-contact="WhatsApp">WhatsApp / Admin</button></li></ul></div>
+    </div>
+    <div class="legal"><span>© <span id="copyrightYear">2026</span> YooImprove. Hak cipta dilindungi.</span><div class="legal-links"><a href="#stats" data-goto="stats">Disclaimer</a><button data-contact="Pertanyaan privasi" style="color:rgba(255,255,255,.65);font-size:.75rem">Privasi & Kontak</button></div></div>
+  </div></footer>
+
+  <div id="navOverlay" class="nav-overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Menu navigasi">
+    <div class="nav-overlay-top shell" style="width:100%"><button class="brand" data-goto="home"><svg class="shiba"><use href="#icon-shiba"/></svg>YooImprove</button><button class="close-nav" id="closeMenu"><svg class="ico"><use href="#icon-close"/></svg> Tutup</button></div>
+    <nav class="nav-big shell" aria-label="Menu layar penuh"><ul>
+      <li><button data-goto="home"><small>01</small>Beranda</button></li><li><button data-goto="works"><small>02</small>E-book</button></li><li><button data-goto="services"><small>03</small>Materi</button></li><li><button data-goto="about"><small>04</small>Tentang</button></li><li><button data-goto="stats"><small>05</small>Program VIP</button></li><li><button data-contact="Konsultasi umum"><small>06</small>Kontak</button></li>
+    </ul></nav>
+    <div class="nav-overlay-bottom shell" style="width:100%"><span>WIB — <span class="js-time">--:--</span></span><button data-contact="Mulai belajar bersama YooImprove">Mulai Belajar ↗</button></div>
+  </div>
+
+  <div class="modal-backdrop" id="contactBackdrop" aria-hidden="true">
+    <div class="modal" id="contactModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" tabindex="-1">
+      <button class="modal-close" id="closeModal" aria-label="Tutup dialog"><svg class="ico"><use href="#icon-close"/></svg></button>
+      <div class="modal-form-heading"><span class="modal-sub">YooImprove • Hubungi Kami</span><h2 id="modalTitle">Mau belajar bagian yang mana?</h2><p class="modal-intro">Isi detailnya, lalu salin pesan untuk dikirim ke admin YooImprove. Website demo ini belum terhubung ke WhatsApp ataupun penyimpanan data.</p></div>
+      <form class="modal-form" id="contactForm">
+        <label class="form-field">Nama<input id="fieldName" name="name" type="text" autocomplete="name" maxlength="80" placeholder="Nama kamu" required /></label>
+        <label class="form-field">Kontak (opsional)<input id="fieldContact" name="contact" type="text" maxlength="100" placeholder="Email atau nomor yang ingin kamu bagikan" /></label>
+        <label class="form-field">Topik yang diminati<select id="fieldTopic" name="topic"><option>E-book Gratis: Memahami Saham dari Nol</option><option>E-book Kamus Istilah Saham A–Z</option><option>E-book Analisis Fundamental</option><option>E-book Bandarmology</option><option>Belajar Saham dari Nol</option><option>Belajar Analisis Teknikal</option><option>Belajar Fundamental</option><option>VIP Umum</option><option>VIP Privat</option><option>Informasi VIP Umum / VIP Privat</option><option>Konsultasi umum</option><option>Kontak media sosial</option><option>Lainnya</option></select></label>
+        <label class="form-field">Pesan<textarea id="fieldMessage" name="message" rows="3" maxlength="1500" placeholder="Apa yang ingin kamu tanyakan?" required></textarea></label>
+        <div class="form-actions"><p class="form-note">Klik tombol untuk menyiapkan pesan. Belum langsung terkirim.</p><button class="pill dark with-arrow" type="submit">Siapkan Pesan <span class="pill-icon"><svg class="ico"><use href="#icon-up-right"/></svg></span></button></div>
+      </form>
+      <div class="success-content" id="successContent"><div class="success-icon"><svg class="shiba"><use href="#icon-shiba"/></svg></div><h2>Pesan siap disalin</h2><p>Pesan ini belum terkirim. Salin lalu kirim lewat kontak admin YooImprove setelah tautan resminya tersedia.</p><textarea id="readyMessage" readonly aria-label="Pesan yang siap disalin"></textarea><div class="success-actions"><button class="pill dark" id="copyMessage">Salin Pesan</button><button class="pill outline" id="doneModal">Tutup</button></div><p id="copyFeedback" class="small-alert" role="status"></p></div>
+    </div>
+  </div>
+
+  <script type="importmap">{"imports":{"lenis":"https://unpkg.com/lenis@1.3.23/dist/lenis.mjs"}}</script>
+  <script type="module">
+    // Dynamic import allows the standalone site to remain usable if the CDN is unavailable.
+    let lenis=null;
+    import('lenis').then(({default:Lenis}) => { lenis=new Lenis({smoothWheel:true}); if(document.body.classList.contains('ready')===false)lenis.stop(); function frame(t){lenis.raf(t);requestAnimationFrame(frame)}requestAnimationFrame(frame); }).catch(() => console.info('Smooth scrolling fallback: native scroll.'));
+    const $=(q,root=document)=>root.querySelector(q);
+    const $$=(q,root=document)=>Array.from(root.querySelectorAll(q));
+    const reduceMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const root=document.documentElement;
+    function adaptiveGrid(){let w=innerWidth,sz=16-(16*((1920-w)/1920*100*.6666))/100;if(sz>16)root.style.fontSize=sz+'px';else root.style.removeProperty('font-size')}
+    adaptiveGrid();addEventListener('resize',adaptiveGrid);
+    const menu=$('#navOverlay'),modalBackdrop=$('#contactBackdrop'),modal=$('#contactModal');
+    let navOpen=false,modalOpen=false,returnFocus=null;
+    function syncScrollLock(){const locked=navOpen||modalOpen||!document.body.classList.contains('ready');if(locked){lenis?.stop();root.style.position='relative';root.style.overflow='hidden';root.style.height='100%'}else{lenis?.start();root.style.removeProperty('position');root.style.removeProperty('overflow');root.style.removeProperty('height')}}
+    function goto(id){const el=document.getElementById(id);if(!el)return;closeMenu();closeModal();requestAnimationFrame(()=>{if(lenis){lenis.scrollTo(el,{duration:1.2})}else{el.scrollIntoView({behavior:reduceMotion?'auto':'smooth',block:'start'})}})}
+    $$('[data-goto]').forEach(x=>x.addEventListener('click',e=>{e.preventDefault();goto(x.dataset.goto)}));
+    function openMenu(){if(navOpen)return;returnFocus=document.activeElement;navOpen=true;menu.classList.add('open');menu.setAttribute('aria-hidden','false');$('#openMenu').setAttribute('aria-expanded','true');$$('.nav-big li').forEach((li,i)=>li.style.transitionDelay=(80+i*45)+'ms');syncScrollLock();$('#closeMenu').focus()}
+    function closeMenu(){if(!navOpen)return;navOpen=false;menu.classList.remove('open');menu.setAttribute('aria-hidden','true');$('#openMenu').setAttribute('aria-expanded','false');syncScrollLock();returnFocus?.focus?.()}
+    $('#openMenu').addEventListener('click',openMenu);$('#closeMenu').addEventListener('click',closeMenu);
+    function normalizeTopic(topic){if(!topic)return 'Konsultasi umum';if(/Instagram|TikTok|Telegram|WhatsApp/i.test(topic))return 'Kontak media sosial';if(/VIP Umum \/ VIP Privat|Program VIP/i.test(topic))return 'Informasi VIP Umum / VIP Privat';return $$('#fieldTopic option').some(opt=>opt.value===topic||opt.textContent===topic)?topic:'Lainnya'}
+    function openModal(topic){if(navOpen)closeMenu();returnFocus=document.activeElement;modalOpen=true;modalBackdrop.classList.add('open');modalBackdrop.setAttribute('aria-hidden','false');modal.classList.remove('done');$('#contactForm').reset();$('#fieldTopic').value=normalizeTopic(topic);$('#fieldMessage').value=topic?`Halo YooImprove, saya ingin bertanya tentang ${topic}.`:'';$('#copyFeedback').textContent='';syncScrollLock();setTimeout(()=>$('#fieldName').focus(),75)}
+    function closeModal(){if(!modalOpen)return;modalOpen=false;modalBackdrop.classList.remove('open');modalBackdrop.setAttribute('aria-hidden','true');syncScrollLock();returnFocus?.focus?.()}
+    $$('[data-contact]').forEach(x=>x.addEventListener('click',()=>openModal(x.dataset.contact)));
+    $('#closeModal').addEventListener('click',closeModal);$('#doneModal').addEventListener('click',closeModal);
+    modalBackdrop.addEventListener('click',e=>{if(e.target===modalBackdrop)closeModal()});
+    document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(modalOpen)closeModal();else if(navOpen)closeMenu()}if(e.key==='Tab'&&(modalOpen||navOpen)){const panel=modalOpen?modal:menu;const focusable=$$('button:not([disabled]),a[href],input:not([disabled]),select:not([disabled]),textarea:not([disabled])',panel).filter(el=>el.getClientRects().length);if(!focusable.length)return;const first=focusable[0],last=focusable.at(-1);if(e.shiftKey&&document.activeElement===first){last.focus();e.preventDefault()}else if(!e.shiftKey&&document.activeElement===last){first.focus();e.preventDefault()}}});
+    $('#contactForm').addEventListener('submit',e=>{e.preventDefault();const name=$('#fieldName').value.trim(),contact=$('#fieldContact').value.trim(),topic=$('#fieldTopic').value,message=$('#fieldMessage').value.trim();if(!name||!message)return;const ready=`Halo admin YooImprove!\nNama: ${name}\n${contact?'Kontak: '+contact+'\n':''}Topik: ${topic}\n\n${message}`;$('#readyMessage').value=ready;modal.classList.add('done');$('#copyMessage').focus()});
+    $('#copyMessage').addEventListener('click',async()=>{let value=$('#readyMessage').value;try{await navigator.clipboard.writeText(value);$('#copyFeedback').textContent='Pesan berhasil disalin. Silakan kirim ke admin YooImprove.'}catch(e){$('#readyMessage').focus();$('#readyMessage').select();$('#copyFeedback').textContent='Pilih dan salin teks di atas secara manual (Ctrl+C atau tekan lama).'}});
+    // Real-time WIB clock, independent of the viewer's time zone.
+    function tickClock(){const now=new Date();const timestr=new Intl.DateTimeFormat('en-US',{hour:'numeric',minute:'2-digit',hour12:true,timeZone:'Asia/Jakarta'}).format(now).replace(' AM','am').replace(' PM','pm');const date=new Intl.DateTimeFormat('id-ID',{day:'numeric',month:'long',year:'numeric',timeZone:'Asia/Jakarta'}).format(now);$$('.js-time').forEach(x=>x.textContent=timestr);$$('.js-date').forEach(x=>x.textContent=date);$('#copyrightYear').textContent=new Intl.DateTimeFormat('en-US',{year:'numeric',timeZone:'Asia/Jakarta'}).format(now)}
+    tickClock();setInterval(tickClock,1000);
+    const slides=[{caption:'E-book pemula',title:'Mulai dari fondasi.',action:'works'},{caption:'Belajar analisis',title:'Lebih paham sebelum melangkah.',action:'services'},{caption:'Pilihan program VIP',title:'Diskusi dan belajar lebih terarah.',action:'stats'}];let slideIndex=0,slideMoving=false;
+    function showSlide(step){if(slideMoving)return;slideMoving=true;const el=$('#slideTitle');el.classList.add('changing');setTimeout(()=>{slideIndex=(slideIndex+step+slides.length)%slides.length;el.textContent=slides[slideIndex].title;$('#slideCaption').textContent=slides[slideIndex].caption;$$('#cardDots span').forEach((dot,i)=>dot.classList.toggle('active',i===slideIndex));el.classList.remove('changing');slideMoving=false},200)}
+    $('#prevSlide').addEventListener('click',()=>showSlide(-1));$('#nextSlide').addEventListener('click',()=>showSlide(1));$('#heroSlideOpen').addEventListener('click',()=>goto(slides[slideIndex].action));
+    // Word-by-word statement reveal.
+    $$('[data-word-reveal]').forEach(node=>{const parts=[];function wrapText(text,muted){text.split(/(\s+)/).filter(Boolean).forEach(token=>{if(/^\s+$/.test(token)){parts.push(document.createTextNode(' '))}else{let span=document.createElement('span');span.className='word'+(muted?' muted-copy':'');span.textContent=token;span.style.transitionDelay=(parts.filter(n=>n.nodeType===1).length*35)+'ms';parts.push(span)}})}const nodes=Array.from(node.childNodes);nodes.forEach(child=>{if(child.nodeType===3)wrapText(child.textContent,false);else if(child.nodeType===1)wrapText(child.textContent,child.classList.contains('muted-copy'))});node.replaceChildren(...parts)});
+    const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('in');observer.unobserve(entry.target)}})},{threshold:.12,rootMargin:'0px 0px -20px 0px'});
+    $$('.reveal').forEach((el,i)=>{if(el.closest('.band'))el.style.transitionDelay=($$('.band .reveal').indexOf(el)*120)+'ms';if(el.closest('.book-grid'))el.style.transitionDelay=($$('.book-grid .reveal').indexOf(el)*90)+'ms';if(el.closest('.services-list'))el.style.transitionDelay=($$('.services-list .reveal').indexOf(el)*80)+'ms';observer.observe(el)});
+    const statNodes=$$('[data-count]');let statRunning=false;function countStats(){statNodes.forEach(el=>{const box=el.getBoundingClientRect();const start=innerHeight,end=innerHeight/2-box.height/2;const progress=Math.min(1,Math.max(0,(start-box.top)/(start-end)));el.textContent=Math.round(Number(el.dataset.count)*progress)})}
+    addEventListener('scroll',()=>{if(statRunning)return;statRunning=true;requestAnimationFrame(()=>{countStats();statRunning=false})},{passive:true});countStats();
+    // Signature liquid photo-reveal brush, preserving the original Lumora before/after mapping.
+    function initLiquid(){if(reduceMotion||!matchMedia('(pointer:fine)').matches)return;const box=$('#liquidReveal'),canvas=$('#liquidCanvas'),ctx=canvas.getContext('2d');if(!ctx)return;
+      const afterSrc='https://api.getlayers.ai/storage/v1/object/public/public/assets/lumora-e8b711fc68/hero/before.jpg';
+      const after=new Image();after.crossOrigin='anonymous';let cover=document.createElement('canvas'),coverctx=cover.getContext('2d'),brush=document.createElement('canvas'),brushctx=brush.getContext('2d');let w=0,h=0,dpr=1,r=0,diam=0,last=null,queue=[],idle=121,drawn=false,ready=false;
+      function sizeCanvas(){const rc=box.getBoundingClientRect();dpr=Math.min(devicePixelRatio||1,2);w=Math.round(rc.width*dpr);h=Math.round(rc.height*dpr);if(!w||!h)return;canvas.width=w;canvas.height=h;cover.width=w;cover.height=h;r=143*dpr;diam=Math.ceil(2*r);brush.width=diam;brush.height=diam;if(after.complete&&after.naturalWidth)prepare()}
+      function prepare(){if(!w||!h||!after.naturalWidth)return;coverctx.clearRect(0,0,w,h);let scale=Math.max(w/after.naturalWidth,h/after.naturalHeight),dw=after.naturalWidth*scale,dh=after.naturalHeight*scale;coverctx.drawImage(after,(w-dw)/2,(h-dh)/2,dw,dh);ready=true}
+      function stamp(x,y){const c=diam/2;brushctx.clearRect(0,0,diam,diam);brushctx.globalCompositeOperation='source-over';let gradient=brushctx.createRadialGradient(c,c,0,c,c,r);gradient.addColorStop(0,'rgba(255,255,255,1)');gradient.addColorStop(.55,'rgba(255,255,255,.82)');gradient.addColorStop(1,'rgba(255,255,255,0)');brushctx.fillStyle=gradient;brushctx.fillRect(0,0,diam,diam);brushctx.globalCompositeOperation='source-in';brushctx.drawImage(cover,x-c,y-c,diam,diam,0,0,diam,diam);brushctx.globalCompositeOperation='source-over';ctx.drawImage(brush,x-c,y-c)}
+      addEventListener('pointermove',e=>{if(!ready||navOpen||modalOpen||!document.body.classList.contains('ready'))return;let b=box.getBoundingClientRect();let x=(e.clientX-b.left)*dpr,y=(e.clientY-b.top)*dpr;if(x< -r||x>w+r||y< -r||y>h+r){last=null;return}if(last){let dx=x-last.x,dy=y-last.y,dist=Math.hypot(dx,dy),steps=Math.min(Math.ceil(dist/Math.max(r*.3,1)),60);for(let k=1;k<=steps;k++)queue.push({x:last.x+dx*k/steps,y:last.y+dy*k/steps})}else queue.push({x,y});last={x,y};idle=0},{passive:true});
+      addEventListener('pointerleave',()=>last=null);addEventListener('blur',()=>last=null);
+      function paint(){const active=queue.length>0;if(active){idle=0;drawn=true}else idle++;if(drawn&&idle<=120){const fade=active ? .016 : Math.min(.016+idle*.004,.5);ctx.globalCompositeOperation='destination-out';ctx.fillStyle=`rgba(0,0,0,${fade})`;ctx.fillRect(0,0,w,h);ctx.globalCompositeOperation='source-over';while(queue.length){const p=queue.shift();stamp(p.x,p.y)}}else if(idle===121){ctx.clearRect(0,0,w,h);drawn=false;queue=[]}requestAnimationFrame(paint)}
+      after.addEventListener('load',()=>{prepare()});after.addEventListener('error',()=>console.info('Hero cursor image unavailable. Static background remains visible.'));
+      new ResizeObserver(sizeCanvas).observe(box);sizeCanvas();after.src=afterSrc;requestAnimationFrame(paint)
+    }
+    initLiquid();
+    // Gate hero entrances behind the short loader; static site stays usable without asset loading.
+    window.scrollTo(0,0);syncScrollLock();const loader=$('#pageLoader');const fill=$('#progressFill'),num=$('#progressNum');
+    function finishIntro(){if(document.body.classList.contains('ready'))return;loader.classList.add('leaving');setTimeout(()=>{document.body.classList.add('ready');syncScrollLock();loader.remove()},730)}
+    if(reduceMotion){document.body.classList.add('ready');loader.remove();syncScrollLock()}
+    else{let start=performance.now();function progressFrame(now){const t=Math.min(1,(now-start)/1300);const ease=t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;const p=Math.round(ease*100);fill.style.width=p+'%';num.textContent=String(p).padStart(3,'0');if(t<1)requestAnimationFrame(progressFrame);else setTimeout(finishIntro,140)}requestAnimationFrame(progressFrame)}
+  </script>
+</body>
+</html>
