@@ -1,6 +1,6 @@
 'use strict';
 const BRAND='markas-cuan', KEY='markas-cuan.isolated.v2', LEGACY='markas-cuan.legacy-disabled';
-const PLANS=[{id:'umum-1',type:'vip',name:'VIP Umum',months:1,duration:'1 bulan',old:0,price:229000,discount:''},{id:'umum-2',type:'vip',name:'VIP Umum',months:2,duration:'2 bulan',old:0,price:335000,discount:''},{id:'umum-12',type:'vip',name:'VIP Umum',months:12,duration:'1 tahun',old:1500000,price:499000,discount:'67%'},{id:'privat-1',type:'private',name:'VIP Privat',months:1,duration:'1 bulan',old:320000,price:200000,discount:'37,5%'}];
+const PLANS=[{id:'umum-1',type:'vip',name:'VIP Umum',months:1,duration:'1 bulan',old:250000,price:150000,discount:'40%'},{id:'umum-2',type:'vip',name:'VIP Umum',months:2,duration:'2 bulan',old:380000,price:247000,discount:'35%'},{id:'umum-12',type:'vip',name:'VIP Umum',months:12,duration:'1 tahun',old:800000,price:500000,discount:'37,5%'},{id:'privat-1',type:'private',name:'VIP Privat',months:1,duration:'1 bulan',old:320000,price:200000,discount:'37,5%'}];
 const $=s=>document.querySelector(s),esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])),rupiah=n=>'Rp'+new Intl.NumberFormat('id-ID').format(n||0),uid=()=>crypto.randomUUID();
 const today=()=>new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Jakarta',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
 function iso(d){return d.toISOString().slice(0,10)}
